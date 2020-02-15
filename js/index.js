@@ -1,31 +1,34 @@
-var time = document.getElementsByClassName("time");
-var date = new Date();
-
-function currentTime() {
-    time[0].innerHTML = date;
-}
-
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =
-        h + ":" + m + ":" + s;
-    var t = setTimeout(startTime, 500);
-}
-
-function checkTime(i) {
-    if (i < 10) { i = "0" + i };
-    return i;
+function main() {
+    let time = document.querySelector(".time");
+    let times = document.querySelectorAll(".time-container>span");
+    let date = new Date();
+    
+    function currentTime() {
+        time.innerHTML = date;
+    }
+    
+    function startTime() {
+        let date = new Date();
+        let h = date.getHours();
+        let m = date.getMinutes();
+        let s = date.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        times[0].innerHTML = h;
+        times[1].innerHTML = m;
+        times[2].innerHTML = s;
+        let t = setTimeout(startTime, 1000);
+    }
+    
+    function checkTime(i) {
+        if (i < 10) { i = "0" + i };
+        return i;
+    }
+    
+    currentTime();
+    startTime();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    currentTime()
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    startTime()
+    main();
 });
